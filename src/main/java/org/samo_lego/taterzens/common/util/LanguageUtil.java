@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -36,7 +37,7 @@ public class LanguageUtil {
         if (stream == null) {
             // Try to fetch language, as it's not present in jar
             try {
-                final URL url = new URL(String.format(LANG_FILE_URL, config.language));
+                final URL url = URI.create(String.format(LANG_FILE_URL, config.language)).toURL();
                 HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
 
                 int responseCode = conn.getResponseCode();
@@ -81,7 +82,7 @@ public class LanguageUtil {
 
     static {
         try {
-            final URL REPO_API_URL = new URL(API_URL);
+            final URL REPO_API_URL = URI.create(API_URL).toURL();
             String ending = ".json";
             HttpsURLConnection conn = (HttpsURLConnection) REPO_API_URL.openConnection();
             if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {

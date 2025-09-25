@@ -83,9 +83,9 @@ public class ScarpetProfession extends AbstractProfession {
     }
 
     @Override
-    public boolean handleAttack(Entity attacker) {
+    public boolean skipAttackFrom(Entity attacker) {
         BEING_ATTACKED_EVENT.triggerCustomEvent(this.npc, this.getTraits(), attacker);
-        return super.handleAttack(attacker);
+        return super.skipAttackFrom(attacker);
     }
 
     @Override

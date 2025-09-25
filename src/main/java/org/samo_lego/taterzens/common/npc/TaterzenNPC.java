@@ -44,7 +44,6 @@ import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.CrossbowAttackMob;
 import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
@@ -90,7 +89,7 @@ import static org.samo_lego.taterzens.common.util.TextUtil.successText;
 /**
  * The NPC itself.
  */
-public class TaterzenNPC extends PathfinderMob implements CrossbowAttackMob, RangedAttackMob, PolymerEntity {
+public class TaterzenNPC extends PathfinderMob implements CrossbowAttackMob, PolymerEntity {
 
     /**
      * Data of the NPC.
@@ -1429,7 +1428,7 @@ public class TaterzenNPC extends PathfinderMob implements CrossbowAttackMob, Ran
             return true;
         }
         for (TaterzenProfession profession : this.professions.values()) {
-            if (profession.handleAttack(attacker)) {
+            if (profession.skipAttackFrom(attacker)) {
                 return true;
             }
         }
@@ -1455,6 +1454,7 @@ public class TaterzenNPC extends PathfinderMob implements CrossbowAttackMob, Ran
     */
     /**
      * Gets whether this NPC is leashable.
+     * Used by commented out canBeLeashed() method for 1.21 compatibility.
      *
      * @return whether this NPC is leashable.
      */
@@ -1636,15 +1636,12 @@ public class TaterzenNPC extends PathfinderMob implements CrossbowAttackMob, Ran
     }
 
     private void shootProjectile(LivingEntity target, Projectile projectile, float multishotSpray) {
-        double deltaX = target.getX() - this.getX();
-        double y = target.getY(0.3333333333333333D) - projectile.getY();
-        double deltaZ = target.getZ() - this.getZ();
-        double planeDistance = Mth.sqrt((float) (deltaX * deltaX + deltaZ * deltaZ));
-
         // TODO: Fix this projectile related code to meet the 1.21 implementation
-        
+        // double deltaX = target.getX() - this.getX();
+        // double y = target.getY(0.3333333333333333D) - projectile.getY();
+        // double deltaZ = target.getZ() - this.getZ();
+        // double planeDistance = Mth.sqrt((float) (deltaX * deltaX + deltaZ * deltaZ));
         // Vector3f launchVelocity = this.getProjectileShotVector(this, new Vec3(deltaX, y + planeDistance * 0.2D, deltaZ), multishotSpray);
-
         // projectile.shoot(launchVelocity.x(), launchVelocity.y(), launchVelocity.z(), 1.6F, 0);
 
         this.playSound(SoundEvents.ARROW_SHOOT, 1.0F, 0.125F);
@@ -2073,9 +2070,6 @@ public class TaterzenNPC extends PathfinderMob implements CrossbowAttackMob, Ran
         this.npcData.booleanTags.put(name, value);
     }
 
-    private void resetTag(String name) {
-        this.npcData.booleanTags.remove(name);
-    }
 
     private boolean getTag(String name, boolean defaultValue) {
         if (this.npcData.booleanTags.containsKey(name))

@@ -2,7 +2,6 @@ package org.samo_lego.taterzens.fabric.platform;
 
 import eu.pb4.sgui.api.gui.SimpleGui;
 import me.lucko.fabric.api.permissions.v0.Permissions;
-import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.Registry;
@@ -11,7 +10,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import org.samo_lego.taterzens.common.npc.TaterzenNPC;
@@ -68,9 +66,9 @@ public class FabricPlatform implements Platform {
         final EntityType<TaterzenNPC> type = Registry.register(
                 BuiltInRegistries.ENTITY_TYPE,
                 NPC_ID,
-                FabricEntityTypeBuilder
-                        .<TaterzenNPC>create(MobCategory.MISC, TaterzenNPC::new)
-                        .dimensions(EntityDimensions.scalable(0.6F, 1.8F))
+                EntityType.Builder
+                        .<TaterzenNPC>of(TaterzenNPC::new, MobCategory.MISC)
+                        .sized(0.6F, 1.8F)
                         .build(ResourceKey.create(Registries.ENTITY_TYPE, NPC_ID)));
 
         TATERZEN_TYPE = () -> type;

@@ -1,14 +1,6 @@
 package org.samo_lego.taterzens.client;
 
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
-import net.minecraft.client.model.PlayerModel;
-import net.minecraft.client.model.geom.ModelLayers;
-import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.client.resources.DefaultPlayerSkin;
-import net.minecraft.resources.ResourceLocation;
-import org.samo_lego.taterzens.common.Taterzens;
-import org.samo_lego.taterzens.common.npc.TaterzenNPC;
 
 public class TaterzensClient implements ClientModInitializer {
 	@Override

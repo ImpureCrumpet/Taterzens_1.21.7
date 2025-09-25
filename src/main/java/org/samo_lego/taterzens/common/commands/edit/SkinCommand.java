@@ -16,7 +16,6 @@ import org.samo_lego.taterzens.common.Taterzens;
 import org.samo_lego.taterzens.common.commands.NpcCommand;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.util.concurrent.ExecutorService;
@@ -87,19 +86,19 @@ public class SkinCommand {
                     String param = id.substring(id.lastIndexOf('/') + 1);  // + 1 so as to not include "/"
                     String mineskinUrl = MINESKIN_API_URL + param;
                     try {
-                        url = new URL(mineskinUrl);
-                    } catch(MalformedURLException e) {
+                        url = URI.create(mineskinUrl).toURL();
+                    } catch(Exception e) {
                         source.sendFailure(errorText("taterzens.error.invalid.url", mineskinUrl));
                     }
                 } else {
                     // Get skin by player's name
                     try {
-                        String uuidReply = urlRequest(new URL(MOJANG_NAME2UUID + id));
+                        String uuidReply = urlRequest(URI.create(MOJANG_NAME2UUID + id).toURL());
                         if(uuidReply != null) {
                             JsonObject replyJson = GSON.fromJson(uuidReply, JsonObject.class);
                             String uuid = replyJson.get("id").getAsString();
 
-                            url = new URL(String.format(MOJANG_UUID2SKIN, uuid));
+                            url = URI.create(String.format(MOJANG_UUID2SKIN, uuid)).toURL();
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
