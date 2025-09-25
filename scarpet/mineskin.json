@@ -1,0 +1,6 @@
+{
+  "skins": [
+    { "name": "example1", "job": "wanderer", "value": "", "signature": "" },
+    { "name": "example2", "job": "guard", "value": "", "signature": "" }
+  ]
+}

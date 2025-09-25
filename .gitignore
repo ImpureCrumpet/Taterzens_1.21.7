@@ -40,4 +40,3 @@ replay_*.log
 *.jfr
 
 # Local Scarpet development (not tracked)
-scarpet/
