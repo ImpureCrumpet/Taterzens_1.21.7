@@ -1,6 +1,10 @@
 {
   "skins": [
-    { "name": "example1", "job": "wanderer", "value": "", "signature": "" },
-    { "name": "example2", "job": "guard", "value": "", "signature": "" }
+    {
+      "name": "wanderer_mikehwak001",
+      "job": "wanderer",
+      "value": "ewogICJ0aW1lc3RhbXAiIDogMTc0NjEzMzg0ODg0NiwKICAicHJvZmlsZUlkIiA6ICJlZmI1ZWQ2YjVjOTU0ODBlYWFmMjAyZDIxOWVmNjBjNSIsCiAgInByb2ZpbGVOYW1lIiA6ICJNaWtlSHdhazAwMSIsCiAgInNpZ25hdHVyZVJlcXVpcmVkIiA6IHRydWUsCiAgInRleHR1cmVzIiA6IHsKICAgICJTS0lOIiA6IHsKICAgICAgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS85ZTFjMjA0OTk1Mjg2ZjRmZTRmMTYzOTViZWQ3MDFiOGE3MjU1YWQzNjQwODFiZmE4ZDFjNTQ5MTdhMWIzNzFlIgogICAgfQogIH0KfQ==",
+      "signature": "QX822nc5h0wwoPPSOf9iVyawyEET2ztuNNQ593cPk5Mxiszfkfq6LznT1c6GM67eFPFB5ar7M1i4O3KnLoWHgNP6/EqirbpGEVxVgj1wN6n+27gj02fVOVegfYlbNhJ5hWgc6+7LfOKVMxk4y55icNWKgUB/baab7Zp+/ICgJoFkQIlA6Ltbf2Sc+KYfQlU6YHiPRY4NwpXptDwOLpUx0XsvoIgl8fBrJby9f+73Ux+fjxKEBAxQaNCdwfrF37o43wCiRkJg9oYbSmKK6bf3PY+FqNrkSP6JqY9d6osPXJELI7XBJoQcrGSK7T16P6mta9y75om/CZlDiplxnzGCC37lyV9U6aanhzZvyHXleKtSBQcAfuWHZC8crnyx3dTBwfRcFVC6Qu/INc1gMBev9O4jcaFQRKhuPDObLGJqtt29QZFX0lJIf6QOBMhDqRRBWog4c55fij0B1fOUR98ve609GxyyIE53JBdewXevcA45WB67Wbi6+q/waNCsowlYeQ70gT0ULjdB5yQGz5nK9cWkLb6EPTXFu5Z3R/61ygaSHyD9Kdy3X79H5UHTZqD3GrRHe73sPweFUxPoSd1ShKuEnC5ZaHcA5+cu365S75xZFxjdTvoQhi0ySpzMkr1Q4hA8omYGhgYv81rkuQSrcA20y1FfRwu65w2oOCGKfnM="
+    }
   ]
 }
