@@ -30,8 +30,8 @@
     "taterzens.common.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.7.4",
-    "fabric": ">=0.48.0"
+    "fabricloader": ">=0.16.0",
+    "fabric": ">=0.129.0"
   },
   "recommends": {
     "disguiselib": ">=1.2.1"

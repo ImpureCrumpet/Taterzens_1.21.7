@@ -38,7 +38,7 @@ dependencies {
     // To change the versions see the gradle.properties file
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings loom.layered {
-        //mappings("net.fabricmc:yarn:$project.yarn_mappings:v2")
+        //mappings("net.fabricmc:yarn:${project.yarn_mappings}:v2")
         officialMojangMappings()
         //parchment(file(project.layout.buildDirectory.file("parchment-1.21.6-pre1-BLEEDING-20250609.171144-1.zip")))
     }

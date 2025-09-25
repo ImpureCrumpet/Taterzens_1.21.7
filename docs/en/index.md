@@ -20,3 +20,6 @@ Forge: [![Curseforge downloads](http://cf.way2muchnoise.eu/full_473071_downloads
 
 [Installation :material-download:](installation){ .md-button }
 [Getting started :fontawesome-solid-gamepad:](getting_started){ .md-button .md-button--primary }
+
+[Upgrade notes (1.21.7)](upgrade_1_21_7)
+[Roadmap / Improvements](roadmap)
