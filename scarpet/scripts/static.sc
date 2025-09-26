@@ -3,95 +3,82 @@ __config() -> {
     'carpet' -> '>=1.4.33',
     'taterzens' -> '>=1.11.6'
   },
-  'stay_loaded' -> true
+  'stay_loaded' -> true,
+  'commands' -> {
+    'check' -> 'check_static'
+  }
 };
 
-NPC_NAME = 'Static';
+global_npc_name = 'Static';
 
-// Skin data from mineskin.json for "static" job (Waldo)
-SKIN_VALUE = 'ewogICJ0aW1lc3RhbXAiIDogMTc1MDczNTQ5Mzk4NywKICAicHJvZmlsZUlkIiA6ICI2ZDcwZjM0OGFjODA0MWM5YjY4ZDA4MWUwMTUyNzVjNSIsCiAgInByb2ZpbGVOYW1lIiA6ICJ0ZXN0YWx0MSIsCiAgInNpZ25hdHVyZVJlcXVpcmVkIiA6IHRydWUsCiAgInRleHR1cmVzIiA6IHsKICAgICJTS0lOIiA6IHsKICAgICAgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS80MGY4ODE2NWI5OTg5NTM0NmUyM2I5OTI0MGRmYzBjNTNkNzYwMTAwY2I2MGM2YzA1ZjBjYjEyMjZlYWE2OWM5IgogICAgfQogIH0KfQ==';
-SKIN_SIGNATURE = 'KGiKtQfmHWJslnQznkQ0WAQeP0MbcNNnP6JfxnGVZsPRVYD4bdayBTsw/dz3IgvfzyzhZ7cuHlQyfCv4/8N6seHF5SZUd2UnH+bTnRcvhSo0NI64Igloukwcp/xBO3CHzO7HXHjvnd+l8B8gqvI1UEwjFJ5ZjiLxDa/L8iVy+U7/ZVSTplYbrvCIjgU/+DKX7H52bkgtKBKOjRPE3AkOkbEJ2OSUoHY9zgxCCRvMG8Ps2QOcYuu1N2TPeqIlNrxWL4OVlu8rya6yJwLOMdD/PR4GyWzxQ6QpEh6nwcPAYKyXO11EGYTC831ruuKfh3yieSuGxTQvDhX4Eu6a2wjiYa1CV86VHRuxmCFhN6Yp7YtqXr0zU9sHCMCMkMhCA1jMKjFh3fxfTFklD2Prx6cANNfoYfAxT9gAsyF9M3lGkwanUkZaqpcQDOVCAIngAybGPCOhwrvD0XXtPwxj5zequGg//NtxxPfAcxd2nznGSwL901tyGNqyW/sfaH//TxhWe9AfdYLQSsy6SYtESOMMK6jPkwzq0adk9um6kp+UIGjfCLSfAYPVP04/G1Ph3IRXQ5vjGirRiR4KrtxF1dKwWMTCkyBOriMOlAef7C2av6t5YkIXvQIWszv5tJFBZF67a+u9pGNDGNI7SB+CCvYBdg5AC50AE9L2yNTYgwaCKZY=';
+global_skin_value = 'ewogICJ0aW1lc3RhbXAiIDogMTc1MDczNTQ5Mzk4NywKICAicHJvZmlsZUlkIiA6ICI2ZDcwZjM0OGFjODA0MWM5YjY4ZDA4MWUwMTUyNzVjNSIsCiAgInByb2ZpbGVOYW1lIiA6ICJ0ZXN0YWx0MSIsCiAgInNpZ25hdHVyZVJlcXVpcmVkIiA6IHRydWUsCiAgInRleHR1cmVzIiA6IHsKICAgICJTS0lOIiA6IHsKICAgICAgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS80MGY4ODE2NWI5OTg5NTM0NmUyM2I5OTI0MGRmYzBjNTNkNzYwMTAwY2I2MGM2YzA1ZjBjYjEyMjZlYWE2OWM5IgogICAgfQogIH0KfQ==';
+global_skin_signature = 'KGiKtQfmHWJslnQznkQ0WAQeP0MbcNNnP6JfxnGVZsPRVYD4bdayBTsw/dz3IgvfzyzhZ7cuHlQyfCv4/8N6seHF5SZUd2UnH+bTnRcvhSo0NI64Igloukwcp/xBO3CHzO7HXHjvnd+l8B8gqvI1UEwjFJ5ZjiLxDa/L8iVy+U7/ZVSTplYbrvCIjgU/+DKX7H52bkgtKBKOjRPE3AkOkbEJ2OSUoHY9zgxCCRvMG8Ps2QOcYuu1N2TPeqIlNrxWL4OVlu8rya6yJwLOMdD/PR4GyWzxQ6QpEh6nwcPAYKyXO11EGYTC831ruuKfh3yieSuGxTQvDhX4Eu6a2wjiYa1CV86VHRuxmCFhN6Yp7YtqXr0zU9sHCMCMkMhCA1jMKjFh3fxfTFklD2Prx6cANNfoYfAxT9gAsyF9M3lGkwanUkZaqpcQDOVCAIngAybGPCOhwrvD0XXtPwxj5zequGg//NtxxPfAcxd2nznGSwL901tyGNqyW/sfaH//TxhWe9AfdYLQSsy6SYtESOMMK6jPkwzq0adk9um6kp+UIGjfCLSfAYPVP04/G1Ph3IRXQ5vjGirRiR4KrtxF1dKwWMTCkyBOriMOlAef7C2av6t5YkIXvQIWszv5tJFBZF67a+u9pGNDGNI7SB+CCvYBdg5AC50AE9L2yNTYgwaCKZY=';
 
-__memory = {};
+global_npc_uuid = null;
 
-get_npc_uuid() -> get(__memory, 'npc_uuid');
-set_npc_uuid(u) -> (__memory:'npc_uuid' = u);
-
-// Attempt to get world spawn. If not available, return null.
-get_world_spawn() -> (
-    s = null;
-    try(
-        s = world_spawn_point(),
-        s = null
-    );
-    s
-);
+get_world_spawn() -> system_info('world_spawn_point');
 
 spawn_static_at(p) -> (
-    pl = players();
-    if (size(pl) == 0, return());
-    owner = pl[0];
-    e = spawn_taterzen(owner, NPC_NAME);
-    if (e != null, (
-        teleport(e, p);
-        modify(e, 'name', text(NPC_NAME));
-        modify(e, 'nbt_merge', {'Invulnerable' -> true});
-        modify(e, 'nbt_merge', {'PersistenceRequired' -> true});
-        // apply skin from mineskin.json data
-        skin_tag = {'value' -> SKIN_VALUE, 'signature' -> SKIN_SIGNATURE};
-        call(e, 'setSkinFromTag', skin_tag);
-        call(e, 'broadcastProfileUpdates');
-        set_npc_uuid(str(uuid(e)));
-    ));
-    e
+    online_players = player('all');
+    if (length(online_players) == 0, return());
+    owner = online_players:0;
+
+    npc = taterzen:create(owner, global_npc_name);
+
+    if (npc != null,
+        modify(npc, 'pos', p);
+        taterzen:set_name(npc, format('w ' + global_npc_name));
+        modify(npc, 'nbt_merge', nbt('{Invulnerable:true,PersistenceRequired:true}'));
+        
+        taterzen:set_skin(npc, global_skin_value, global_skin_signature);
+        
+        global_npc_uuid = query(npc, 'uuid');
+    );
+    npc
 );
 
 ensure_spawned() -> (
-    u = get_npc_uuid();
-    e = null;
-    if (u != null, e = taterzen_by_uuid(u));
-    if (e != null, return(e));
+    npc = null;
+    if (global_npc_uuid != null,
+        npc = taterzen:get_by_uuid(global_npc_uuid)
+    );
+    if (npc != null, return(npc));
 
-    // Determine target position: world spawn if available, else first player's position
-    s = get_world_spawn();
-    target = null;
-    if (s != null, target = s, (
-        pl = players();
-        if (size(pl) > 0, target = pos(pl[0]));
-    ));
+    target_pos = get_world_spawn();
+    if (target_pos == null,
+        online_players = player('all');
+        if (length(online_players) > 0, target_pos = pos(online_players:0));
+    );
 
-    if (target == null, (
-        // No players yet; retry shortly
+    if (target_pos == null,
         schedule(100, ensure_spawned);
         return();
-    ));
+    );
 
-    e = spawn_static_at(target);
-    if (e == null, schedule(100, ensure_spawned));
-    e
+    npc = spawn_static_at(target_pos);
+    if (npc == null, schedule(100, ensure_spawned));
+    npc
 );
 
 __on_start() -> (
-    print('static.sc: Starting up...');
-    schedule(10, ensure_spawned);
+    print(format('gi static.sc: Starting up...'));
+    ensure_spawned();
 );
 
-// Debug command to check script status
 check_static() -> (
-    u = get_npc_uuid();
-    if (u == null, 
-        print('No static NPC UUID stored'),
+    if (global_npc_uuid == null,
+        print('No static NPC UUID stored.'),
         (
-            e = taterzen_by_uuid(u);
-            if (e == null,
-                print('Static NPC UUID stored but entity not found: ' + u),
-                print('Static NPC found: ' + str(e) + ' at ' + str(pos(e)))
+            npc = taterzen:get_by_uuid(global_npc_uuid);
+            if (npc == null,
+                print(format('r Static NPC UUID stored but entity not found: ' + global_npc_uuid)),
+                print(format('g Static NPC found: ' + query(npc, 'id') + ' at ' + pos(npc)))
             )
         )
     );
     spawn_pos = get_world_spawn();
     if (spawn_pos == null,
-        print('World spawn not available, will use first player position'),
-        print('World spawn point: ' + str(spawn_pos))
+        print('World spawn not available, will use first player position.'),
+        print(format('w World spawn point: ' + spawn_pos))
     );
 );
