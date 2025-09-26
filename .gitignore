@@ -40,3 +40,6 @@ replay_*.log
 *.jfr
 
 # Local Scarpet development (not tracked)
+
+# Local reference docs (not tracked)
+ref/
