@@ -2,11 +2,14 @@
 # - Spawns once on load (or when a player is online)
 # - Stays put (no movement)
 # - Invulnerable and persistent
-# - Name: "Wanderer" (adjust as desired)
-# - Skin: auto-apply via Mineskin link
+# - Name: "Static" (adjust as desired)
+# - Skin: auto-apply via setSkinFromTag with mineskin.json data
 
-NPC_NAME = 'Wanderer';
-SKIN_URL = 'https://minesk.in/dfcc2f01f6ce403781051b34fcf0d6e8';
+NPC_NAME = 'Static';
+
+# Skin data from mineskin.json for "static" job (Waldo)
+SKIN_VALUE = 'ewogICJ0aW1lc3RhbXAiIDogMTc1MDczNTQ5Mzk4NywKICAicHJvZmlsZUlkIiA6ICI2ZDcwZjM0OGFjODA0MWM5YjY4ZDA4MWUwMTUyNzVjNSIsCiAgInByb2ZpbGVOYW1lIiA6ICJ0ZXN0YWx0MSIsCiAgInNpZ25hdHVyZVJlcXVpcmVkIiA6IHRydWUsCiAgInRleHR1cmVzIiA6IHsKICAgICJTS0lOIiA6IHsKICAgICAgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS80MGY4ODE2NWI5OTg5NTM0NmUyM2I5OTI0MGRmYzBjNTNkNzYwMTAwY2I2MGM2YzA1ZjBjYjEyMjZlYWE2OWM5IgogICAgfQogIH0KfQ==';
+SKIN_SIGNATURE = 'KGiKtQfmHWJslnQznkQ0WAQeP0MbcNNnP6JfxnGVZsPRVYD4bdayBTsw/dz3IgvfzyzhZ7cuHlQyfCv4/8N6seHF5SZUd2UnH+bTnRcvhSo0NI64Igloukwcp/xBO3CHzO7HXHjvnd+l8B8gqvI1UEwjFJ5ZjiLxDa/L8iVy+U7/ZVSTplYbrvCIjgU/+DKX7H52bkgtKBKOjRPE3AkOkbEJ2OSUoHY9zgxCCRvMG8Ps2QOcYuu1N2TPeqIlNrxWL4OVlu8rya6yJwLOMdD/PR4GyWzxQ6QpEh6nwcPAYKyXO11EGYTC831ruuKfh3yieSuGxTQvDhX4Eu6a2wjiYa1CV86VHRuxmCFhN6Yp7YtqXr0zU9sHCMCMkMhCA1jMKjFh3fxfTFklD2Prx6cANNfoYfAxT9gAsyF9M3lGkwanUkZaqpcQDOVCAIngAybGPCOhwrvD0XXtPwxj5zequGg//NtxxPfAcxd2nznGSwL901tyGNqyW/sfaH//TxhWe9AfdYLQSsy6SYtESOMMK6jPkwzq0adk9um6kp+UIGjfCLSfAYPVP04/G1Ph3IRXQ5vjGirRiR4KrtxF1dKwWMTCkyBOriMOlAef7C2av6t5YkIXvQIWszv5tJFBZF67a+u9pGNDGNI7SB+CCvYBdg5AC50AE9L2yNTYgwaCKZY=';
 
 __memory = {};
 
@@ -30,10 +33,11 @@ spawn_static_at(p) -> (
         modify(e, 'name', text(NPC_NAME));
         modify(e, 'nbt', {'Invulnerable' -> true});
         modify(e, 'nbt', {'PersistenceRequired' -> true});
+        # apply skin from mineskin.json data
+        skin_tag = {'value' -> SKIN_VALUE, 'signature' -> SKIN_SIGNATURE};
+        call(e, 'setSkinFromTag', skin_tag);
+        call(e, 'broadcastProfileUpdates');
         set_npc_uuid(str(uuid(e)));
-        # Try to select and set skin using Taterzens commands as the owner
-        run('/npc select uuid ' + str(uuid(e)), owner);
-        run('/npc edit skin ' + SKIN_URL, owner);
     ));
     e
 );
