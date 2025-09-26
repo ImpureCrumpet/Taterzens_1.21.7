@@ -49,7 +49,7 @@ ensure_spawned() -> (
     u = get_npc_uuid();
     e = null;
     if (u != null, e = taterzen_by_uuid(u));
-    if (e != null, return e);
+    if (e != null, return(e));
 
     // Determine target position: world spawn if available, else first player's position
     s = get_world_spawn();
