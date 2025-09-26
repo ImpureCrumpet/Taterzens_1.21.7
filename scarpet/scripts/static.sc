@@ -3,9 +3,10 @@
 # - Stays put (no movement)
 # - Invulnerable and persistent
 # - Name: "Wanderer" (adjust as desired)
-# - Skin: run /npc edit skin MikeHwak001 (or your Mineskin link) after spawn
+# - Skin: auto-apply via Mineskin link
 
 NPC_NAME = 'Wanderer';
+SKIN_URL = 'https://minesk.in/dfcc2f01f6ce403781051b34fcf0d6e8';
 
 __memory = {};
 
@@ -14,10 +15,7 @@ set_npc_uuid(u) -> (__memory['npc_uuid'] = u);
 
 # Attempt to get world spawn. If not available, return null.
 get_world_spawn() -> (
-    # Some Carpet builds provide world_spawn(); if not, this returns null due to undefined symbol.
-    # We guard by try-calling and checking null.
     s = null;
-    # best-effort: call world_spawn() if available
     s = world_spawn();
     if (s == null, null, s)
 );
@@ -32,8 +30,10 @@ spawn_static_at(p) -> (
         modify(e, 'name', text(NPC_NAME));
         modify(e, 'nbt', {'Invulnerable' -> true});
         modify(e, 'nbt', {'PersistenceRequired' -> true});
-        # No movement (NPC default is NONE). If needed, enforce via tag.
         set_npc_uuid(str(uuid(e)));
+        # Try to select and set skin using Taterzens commands as the owner
+        run('/npc select uuid ' + str(uuid(e)), owner);
+        run('/npc edit skin ' + SKIN_URL, owner);
     ));
     e
 );
