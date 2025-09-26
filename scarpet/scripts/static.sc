@@ -19,8 +19,11 @@ set_npc_uuid(u) -> (__memory['npc_uuid'] = u);
 # Attempt to get world spawn. If not available, return null.
 get_world_spawn() -> (
     s = null;
-    s = world_spawn();
-    if (s == null, null, s)
+    try(
+        s = world_spawn_point(),
+        s = null
+    );
+    s
 );
 
 spawn_static_at(p) -> (
@@ -68,5 +71,26 @@ ensure_spawned() -> (
 );
 
 __on_start() -> (
+    print('static.sc: Starting up...');
     schedule(10, ensure_spawned);
+);
+
+# Debug command to check script status
+check_static() -> (
+    u = get_npc_uuid();
+    if (u == null, 
+        print('No static NPC UUID stored'),
+        (
+            e = taterzen_by_uuid(u);
+            if (e == null,
+                print('Static NPC UUID stored but entity not found: ' + u),
+                print('Static NPC found: ' + str(e) + ' at ' + str(pos(e)))
+            )
+        )
+    );
+    spawn_pos = get_world_spawn();
+    if (spawn_pos == null,
+        print('World spawn not available, will use first player position'),
+        print('World spawn point: ' + str(spawn_pos))
+    );
 );
