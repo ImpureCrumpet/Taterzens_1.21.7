@@ -28,7 +28,7 @@ get_world_spawn() -> (
 
 spawn_static_at(p) -> (
     pl = players();
-    if (size(pl) == 0, return null);
+    if (size(pl) == 0, return());
     owner = pl[0];
     e = spawn_taterzen(owner, NPC_NAME);
     if (e != null, (
@@ -62,7 +62,7 @@ ensure_spawned() -> (
     if (target == null, (
         // No players yet; retry shortly
         schedule(100, ensure_spawned);
-        return null;
+        return();
     ));
 
     e = spawn_static_at(target);

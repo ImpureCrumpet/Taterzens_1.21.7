@@ -160,7 +160,7 @@ wander_loop() -> (
     if (e == null, (
         // retry in 5s if no players available to spawn
         schedule(100, wander_loop);
-        return null;
+        return();
     ));
 
     center = get_anchor();
