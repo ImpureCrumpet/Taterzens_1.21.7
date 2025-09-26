@@ -1,3 +1,11 @@
+__config() -> {
+  'requires' -> {
+    'carpet' -> '>=1.4.33',
+    'taterzens' -> '>=1.11.6'
+  },
+  'stay_loaded' -> true
+};
+
 // Wanderer v1 - simple background NPC
 // Requirements:
 // - Anchor (set via set_anchor_here / default fallback)

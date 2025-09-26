@@ -1,13 +1,3 @@
-// static.sc - spawn a single static NPC at spawn (fallback: first player)
-// - Spawns once on load (or when a player is online)
-// - Stays put (no movement)
-// - Invulnerable and persistent
-// - Name: "Static" (adjust as desired)
-// - Skin: auto-apply via setSkinFromTag with mineskin.json data
-
-NPC_NAME = 'Static';
-
-// Keep app loaded and declare requirements
 __config() -> {
   'requires' -> {
     'carpet' -> '>=1.4.33',
@@ -15,6 +5,8 @@ __config() -> {
   },
   'stay_loaded' -> true
 };
+
+NPC_NAME = 'Static';
 
 // Skin data from mineskin.json for "static" job (Waldo)
 SKIN_VALUE = 'ewogICJ0aW1lc3RhbXAiIDogMTc1MDczNTQ5Mzk4NywKICAicHJvZmlsZUlkIiA6ICI2ZDcwZjM0OGFjODA0MWM5YjY4ZDA4MWUwMTUyNzVjNSIsCiAgInByb2ZpbGVOYW1lIiA6ICJ0ZXN0YWx0MSIsCiAgInNpZ25hdHVyZVJlcXVpcmVkIiA6IHRydWUsCiAgInRleHR1cmVzIiA6IHsKICAgICJTS0lOIiA6IHsKICAgICAgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS80MGY4ODE2NWI5OTg5NTM0NmUyM2I5OTI0MGRmYzBjNTNkNzYwMTAwY2I2MGM2YzA1ZjBjYjEyMjZlYWE2OWM5IgogICAgfQogIH0KfQ==';
