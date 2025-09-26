@@ -13,8 +13,8 @@ SKIN_SIGNATURE = 'KGiKtQfmHWJslnQznkQ0WAQeP0MbcNNnP6JfxnGVZsPRVYD4bdayBTsw/dz3Ig
 
 __memory = {};
 
-get_npc_uuid() -> __memory['npc_uuid'];
-set_npc_uuid(u) -> (__memory['npc_uuid'] = u);
+get_npc_uuid() -> get(__memory, 'npc_uuid');
+set_npc_uuid(u) -> (__memory:'npc_uuid' = u);
 
 // Attempt to get world spawn. If not available, return null.
 get_world_spawn() -> (
